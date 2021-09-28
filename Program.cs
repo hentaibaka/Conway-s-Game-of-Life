@@ -30,17 +30,11 @@ namespace Conway_s_Game_of_Life
                 
                 Random rnd = new Random();
                 
-                for (int i = 1; i < _ySize - 1; i++) 
-                { 
-                    for (int j = 1; j < _xSize - 1; j++) 
-                    { 
-                        print[i, j] = rnd.Next(0, 3) == 2 ? _simv : " "; 
-                    }
-                }
                 for (int i = 0; i < _ySize; i++) 
                 { 
                     for (int j = 0; j < _xSize; j++) 
                     {
+                        print[i, j] = rnd.Next(0, 3) == 2 ? _simv : " ";
                         printBufer[i, j] = " ";
                         printClone[i, j] = " ";
                     } 
@@ -52,15 +46,14 @@ namespace Conway_s_Game_of_Life
                     {
                         for (int j = 1; j < _xSize - 1; j++)
                         {
-                            neighboursCounter = 0;
-                            neighboursCounter += print[i - 1, j - 1] == _simv ? 1 : 0;         // 1
-                            neighboursCounter += print[i - 1, j    ] == _simv ? 1 : 0;         // 2
-                            neighboursCounter += print[i - 1, j + 1] == _simv ? 1 : 0;         // 3    //1 2 3
-                            neighboursCounter += print[i    , j - 1] == _simv ? 1 : 0;         // 4    //4 # 5
-                            neighboursCounter += print[i    , j + 1] == _simv ? 1 : 0;         // 5    //6 7 8
-                            neighboursCounter += print[i + 1, j - 1] == _simv ? 1 : 0;         // 6
-                            neighboursCounter += print[i + 1, j    ] == _simv ? 1 : 0;         // 7
-                            neighboursCounter += print[i + 1, j + 1] == _simv ? 1 : 0;         // 8
+                            neighboursCounter = (print[i - 1, j - 1] == _simv ? 1 : 0)         // 1
+                                              + (print[i - 1, j    ] == _simv ? 1 : 0)         // 2
+                                              + (print[i - 1, j + 1] == _simv ? 1 : 0)         // 3    //1 2 3
+                                              + (print[i    , j - 1] == _simv ? 1 : 0)         // 4    //4 # 5
+                                              + (print[i    , j + 1] == _simv ? 1 : 0)         // 5    //6 7 8
+                                              + (print[i + 1, j - 1] == _simv ? 1 : 0)         // 6
+                                              + (print[i + 1, j    ] == _simv ? 1 : 0)         // 7
+                                              + (print[i + 1, j + 1] == _simv ? 1 : 0);        // 8
 
                             // cell is 'live' and have 2 or 3 'live' neighbours
 
